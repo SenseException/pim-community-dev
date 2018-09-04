@@ -25,7 +25,7 @@ class FiltersColumn extends BaseView {
   public gridCollection: any
   public page: number = 1
   public opened = false
-  public filterList = null
+  public filterList = {}
 
   readonly config: FiltersConfig
   readonly template: string = `
@@ -90,7 +90,7 @@ class FiltersColumn extends BaseView {
         filter.enabled = checked
     }
 
-    this.triggerFiltersUpdated(filter)
+    this.triggerFiltersUpdated()
   }
 
   fetchFilters(search?: string | null, page: number = this.page) {
@@ -186,12 +186,12 @@ class FiltersColumn extends BaseView {
     })
   }
 
-  triggerFiltersUpdated(filter) {
+  triggerFiltersUpdated() {
     mediator.trigger('filters-column:update-filters', this.loadedFilters, this.gridCollection)
   }
 
   getSelectedFilters() {
-    return $(this.filterList).find('input[checked]').map(((_, el) => $(el).attr('id'))).toArray()
+    return $(this.filterList).find('input[checked]').map(((_, el: HTMLElement) => $(el).attr('id'))).toArray()
   }
 
   renderFilterGroup(filters: GridFilter[], groupName: string) {
