@@ -1,5 +1,10 @@
 # UPGRADE FROM 2.3 TO 3.0
 
+## NB
+ - why allowing empty values ?
+ - why allowing to index null values (at least the spec for indexing normalizers are enforcing that)
+ - why not sub interface for scalar values (boolean, number, text, textarea, etc...): would allow cleaner code with instanceOf instead of check on backend type of the attribute
+
 ## Migrate your custom code
 
 Several classes and services have been moved or renamed. The following commands help to migrate references to them:
