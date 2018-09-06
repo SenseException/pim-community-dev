@@ -673,7 +673,7 @@ class Grid extends Index
         $filter = $this->spin(function () use ($filterName) {
             $filterItem = $this->getElement('Body')->find('css', sprintf('.filter-item[data-name="%s"]', $filterName));
 
-            if (null === $filterItem) {
+            if (null === $filterItem || !$filterItem->isVisible()) {
                 $this->clickOnFilterToManage($filterName);
                 return false;
             }
